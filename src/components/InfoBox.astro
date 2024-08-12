@@ -1,0 +1,9 @@
+---
+// InfoBox.astro
+const { number, licensePlate, passengers } = Astro.props;
+---
+<div class="info-box">
+  <h2>Información de la Micro ${number}</h2>
+  <p><strong>Placa:</strong> ${licensePlate}</p>
+  <p><strong>Pasajeros:</strong> ${passengers}</p>
+</div>

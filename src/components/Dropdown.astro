@@ -1,0 +1,138 @@
+---
+import '../styles/dropdown.css';
+---
+<!-- Dentro de Dropdown -->
+<div class="dropdown-container">
+  <button id="dropdown-toggle" class="dropdown-button">
+    Buscar Paraderos
+    <i class="fas fa-search"></i>
+  </button>
+  <div id="dropdown-menu" class="dropdown-menu">
+    <div id="results-dropdown" class="results-dropdown"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdownButton = document.getElementById('dropdown-toggle');
+  const dropdownMenu = document.getElementById('dropdown-menu');
+  const resultsDropdown = document.getElementById('results-dropdown');
+
+  if (!dropdownButton || !dropdownMenu || !resultsDropdown) {
+    console.error('Elementos del DOM necesarios no encontrados.');
+    return;
+  }
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/data.json');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      if (!Array.isArray(jsonData)) {
+        throw new Error('Data is not an array');
+      }
+      return jsonData;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return [];
+    }
+  };
+
+  dropdownButton.addEventListener('click', async () => {
+    dropdownMenu.classList.toggle('active');
+    dropdownButton.textContent = dropdownMenu.classList.contains('active') ? 'Cerrar Búsqueda' : 'Buscar Paraderos';
+
+    if (dropdownMenu.classList.contains('active')) {
+      try {
+        const data = await fetchData();
+        if (data.length === 0) {
+          resultsDropdown.innerHTML = '<div class="result-item">No se encontraron resultados.</div>';
+        } else {
+          resultsDropdown.innerHTML = data.map(result => {
+            const lastUpdate = result.lastUpdate ? new Date(result.lastUpdate).toLocaleString() : 'No disponible';
+            return `
+              <div class="result-item" data-number="${result.number}" data-license-plate="${result.licensePlate}" data-passengers="${result.passengers}" data-street="${result.street}" data-route="${result.route}" data-last-update="${result.lastUpdate}">
+                <i class="fas fa-bus"></i>
+                <span class="result-number">${result.number}</span>
+                <span class="result-license-plate">${result.licensePlate}</span>
+                <span class="result-passengers">${result.passengers} Pasajeros</span>
+              </div>
+            `;
+          }).join('');
+        }
+      } catch (error) {
+        resultsDropdown.innerHTML = '<div class="result-item">Error al cargar los resultados. Por favor, intenta de nuevo más tarde.</div>';
+      }
+    }
+  });
+
+  resultsDropdown.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    
+    // Verifica que el target sea un elemento y que tenga el método `closest`
+    if (target instanceof HTMLElement) {
+      const selectedItem = target.closest('.result-item');
+
+      if (selectedItem) {
+        const number = selectedItem.getAttribute('data-number');
+        const licensePlate = selectedItem.getAttribute('data-license-plate');
+        const passengers = selectedItem.getAttribute('data-passengers');
+        const street = selectedItem.getAttribute('data-street');
+        const route = selectedItem.getAttribute('data-route');
+        const lastUpdate = selectedItem.getAttribute('data-last-update');
+
+        const infoSection = document.querySelector('.info-section');
+        if (infoSection) {
+          const lastUpdateFormatted = lastUpdate ? new Date(lastUpdate).toLocaleString() : 'No disponible';
+          
+          infoSection.innerHTML = `
+            <div class="info-box">
+              <div class="info-image">
+                <img src="../assets/micro.webp" alt="Imagen de la Micro" />
+              </div>
+              <div class="info-details">
+                <div class="info-item">
+                  <i class="fas fa-bus"></i>
+                  <span>Micro ${number}</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-plate"></i>
+                  <span>Placa: ${licensePlate}</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-users"></i>
+                  <span>Pasajeros: ${passengers}</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Calle: ${street}</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-route"></i>
+                  <span>Ruta: ${route}</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Última Actualización: ${lastUpdateFormatted}</span>
+                </div>
+              </div>
+            </div>
+          `;
+          infoSection.classList.add('active');
+
+          infoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          console.error('No se encontró la sección de información.');
+        }
+
+        dropdownMenu.classList.remove('active');
+        dropdownButton.textContent = 'Buscar Paraderos';
+      }
+    }
+  });
+});
+
+
+</script>

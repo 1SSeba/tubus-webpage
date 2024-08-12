@@ -1,0 +1,173 @@
+/* Estilos para el contenedor del dropdown */
+.dropdown-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Estilos para el botón del dropdown */
+.dropdown-button {
+  background-color: #e63946;
+  color: #ffffff;
+  border: none;
+  padding: 16px 60px; /* Aumentar el padding para hacer el botón más grande */
+  font-size: 1.25rem; /* Aumentar el tamaño de la fuente */
+  cursor: pointer;
+  border-radius: 6px; /* Hacer los bordes más redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hacer la sombra un poco más grande */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espacio adicional entre el texto y el ícono */
+  font-family: 'Roboto', sans-serif; /* Mantener la fuente consistente */
+}
+
+/* Estilo para el botón al pasar el ratón por encima */
+.dropdown-button:hover {
+  background-color: #d62828;
+}
+
+/* Estilo para el botón al presionar */
+.dropdown-button:active {
+  transform: scale(0.95);
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px); /* Ubicación justo debajo del botón con un margen */
+  left: 23.5%; /* Centra el menú con respecto al botón */
+  transform: translateX(-50%); /* Ajusta la posición horizontal */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* Asegúrate de que el menú esté por encima de la caja de información */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Mostrar el menú desplegable cuando está activo */
+.dropdown-menu.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilos para la lista de resultados en el menú desplegable */
+.results-dropdown {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Estilos para los ítems de resultados */
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Estilo para el ítem de resultado al pasar el ratón por encima */
+.result-item:hover {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para las partes individuales del ítem de resultado */
+.result-number {
+  font-weight: bold;
+}
+
+.result-license-plate {
+  font-size: 1.2rem;
+}
+
+.result-passengers {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.result-item i {
+  margin-right: 8px;
+}
+
+/* Estilos para la caja de información */
+.info-box {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Borde redondeado para estilo BentoGrid */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative; /* Asegura que el z-index funcione */
+  z-index: 1000; /* Debe ser menor que el dropdown-menu */
+  transform: translateZ(0);
+  animation: fadeIn 0.5s ease-out, float 3s infinite ease-in-out; /* Animaciones */
+}
+
+/* Estilo para la imagen dentro de la caja de información */
+.info-image {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Ajusta la imagen para cubrir el contenedor sin deformarse */
+.info-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Detalles de la información */
+.info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de flotación */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Estilo de los iconos dentro de la caja de información */
+.info-details i {
+  color: #e63946; /* Color de iconos */
+  margin-right: 8px;
+}
+
+.info-details .info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -1,0 +1,184 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Dropdown from '../components/Dropdown.astro';
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TuBus - Transporte Chileno</title>
+  <link rel="stylesheet" href="/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../styles/dropdown.css">
+  <style>
+  body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.hero-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-image: url('/assets/hero-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #343a40;
+  color: #f8f9f9;
+}
+
+.info-section {
+  position: absolute;
+  bottom: 20px; /* Ajusta esta distancia según tus necesidades */
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  z-index: 1000;
+  display: none; /* Ocultado por defecto */
+}
+
+.info-section.active {
+  display: block; /* Visible cuando tiene la clase active */
+}
+
+
+.info-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.info-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+
+.info-details {
+  flex: 1;
+}
+
+.info-details i {
+  margin-right: 8px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: rgba(52, 58, 64, 0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.menu li a {
+  color: #f8f9fa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #ffc107;
+}
+
+  </style>
+</head>
+<body>
+  <Navbar />
+  <main class="content">
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Bienvenido a TuBus</h1>
+        <p>Encuentra la información de paraderos de micros en Chile.</p>
+        <Dropdown />
+      </div>
+    </section>
+    <section class="info-section" id="info-section">
+      <div class="info-content" id="info-content">
+        <!-- Contenido generado dinámicamente -->
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>&copy; 2024 TuBus. Todos los derechos reservados.</p>
+  </footer>
+  <script>
+    // Aquí puedes agregar cualquier script adicional si es necesario
+  </script>
+</body>
+</html>
