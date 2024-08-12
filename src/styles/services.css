@@ -1,0 +1,72 @@
+.services-section {
+    padding: 60px 20px;
+    text-align: center;
+    background: url('/assets/hero-bg.webp') no-repeat center center;
+    background-size: cover;
+    color: #f8f9f9; /* Color de texto para mejor contraste */
+    position: relative;
+    min-height: 100vh; /* Asegura que la sección tenga al menos el alto de la ventana del navegador */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+  }
+  
+  .services-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+    z-index: 1;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #ffffff;
+    z-index: 2; /* Asegura que el texto esté por encima del fondo oscuro */
+    position: relative;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    position: relative;
+    z-index: 2; /* Asegura que la cuadrícula esté por encima del fondo oscuro */
+    max-width: 1200px; /* Ajusta el ancho máximo de la cuadrícula */
+    width: 100%; /* Asegura que la cuadrícula ocupe todo el ancho disponible */
+    margin: 0 auto; /* Centra la cuadrícula horizontalmente */
+  }
+  
+  .service-item {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Asegura que el contenido del ítem esté correctamente posicionado */
+    z-index: 2; /* Asegura que el ítem esté por encima del fondo oscuro */
+  }
+  
+  .service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .service-item h3 {
+    margin-top: 0;
+    color: #e63946;
+  }
+  
+  .service-item p {
+    margin: 10px 0;
+    color: #555;
+  }
+  
