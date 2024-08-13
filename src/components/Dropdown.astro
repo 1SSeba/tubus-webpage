@@ -4,7 +4,7 @@ import '../styles/dropdown.css';
 <!-- Dentro de Dropdown -->
 <div class="dropdown-container">
   <button id="dropdown-toggle" class="dropdown-button">
-    Buscar Paraderos
+    Buscar Micro
     <i class="fas fa-search"></i>
   </button>
   <div id="dropdown-menu" class="dropdown-menu">
@@ -12,13 +12,17 @@ import '../styles/dropdown.css';
   </div>
 </div>
 
+<!-- Sección de Información -->
+<div class="info-section"></div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const dropdownButton = document.getElementById('dropdown-toggle');
   const dropdownMenu = document.getElementById('dropdown-menu');
   const resultsDropdown = document.getElementById('results-dropdown');
+  const infoSection = document.querySelector('.info-section');
 
-  if (!dropdownButton || !dropdownMenu || !resultsDropdown) {
+  if (!dropdownButton || !dropdownMenu || !resultsDropdown || !infoSection) {
     console.error('Elementos del DOM necesarios no encontrados.');
     return;
   }
@@ -42,16 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dropdownButton.addEventListener('click', async () => {
     dropdownMenu.classList.toggle('active');
-    dropdownButton.textContent = dropdownMenu.classList.contains('active') ? 'Cerrar Búsqueda' : 'Buscar Paraderos';
-
     if (dropdownMenu.classList.contains('active')) {
+      dropdownButton.innerHTML = 'Cerrar Búsqueda <i class="fas fa-times"></i>'; // Cambia el texto y el ícono
       try {
         const data = await fetchData();
         if (data.length === 0) {
           resultsDropdown.innerHTML = '<div class="result-item">No se encontraron resultados.</div>';
         } else {
           resultsDropdown.innerHTML = data.map(result => {
-            const lastUpdate = result.lastUpdate ? new Date(result.lastUpdate).toLocaleString() : 'No disponible';
             return `
               <div class="result-item" data-number="${result.number}" data-license-plate="${result.licensePlate}" data-passengers="${result.passengers}" data-street="${result.street}" data-route="${result.route}" data-last-update="${result.lastUpdate}">
                 <i class="fas fa-bus"></i>
@@ -65,13 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (error) {
         resultsDropdown.innerHTML = '<div class="result-item">Error al cargar los resultados. Por favor, intenta de nuevo más tarde.</div>';
       }
+    } else {
+      dropdownButton.innerHTML = 'Buscar Micros <i class="fas fa-search"></i>'; // Restaura el texto y el ícono original
     }
   });
 
   resultsDropdown.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
-    
-    // Verifica que el target sea un elemento y que tenga el método `closest`
+    const target = event.target;
+
     if (target instanceof HTMLElement) {
       const selectedItem = target.closest('.result-item');
 
@@ -83,56 +86,59 @@ document.addEventListener('DOMContentLoaded', () => {
         const route = selectedItem.getAttribute('data-route');
         const lastUpdate = selectedItem.getAttribute('data-last-update');
 
-        const infoSection = document.querySelector('.info-section');
-        if (infoSection) {
-          const lastUpdateFormatted = lastUpdate ? new Date(lastUpdate).toLocaleString() : 'No disponible';
-          
-          infoSection.innerHTML = `
-            <div class="info-box">
-              <div class="info-image">
-                <img src="https://i.imgur.com/ueDq7ga.png" alt="Imagen de la Micro" />
-              </div>
-              <div class="info-details">
-                <div class="info-item">
-                  <i class="fas fa-bus"></i>
-                  <span>Micro ${number}</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-plate"></i>
-                  <span>Placa: ${licensePlate}</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-users"></i>
-                  <span>Pasajeros: ${passengers} / 60</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Calle: ${street}</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-route"></i>
-                  <span>Ruta: ${route}</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Última Actualización: ${lastUpdateFormatted}</span>
-                </div>
-              </div>
-            </div>
-          `;
-          infoSection.classList.add('active');
-
-          infoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          console.error('No se encontró la sección de información.');
+        // Convertir y formatear la fecha
+        let lastUpdateFormatted = 'No disponible';
+        if (lastUpdate) {
+          const date = new Date(lastUpdate);
+          if (!isNaN(date.getTime())) {
+            lastUpdateFormatted = date.toLocaleString();
+          }
         }
 
+        const infoBox = `
+          <div class="info-box">
+            <div class="info-image">
+              <img src="https://i.imgur.com/ueDq7ga.png" alt="Imagen de la Micro" />
+            </div>
+            <div class="info-details">
+              <div class="info-item">
+                <i class="fas fa-bus"></i>
+                <span>Micro ${number}</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-plate"></i>
+                <span>Placa: ${licensePlate}</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-users"></i>
+                <span>Pasajeros: ${passengers} / 60</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Calle: ${street}</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-route"></i>
+                <span>Ruta: ${route}</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span>Última Actualización: ${lastUpdateFormatted}</span>
+              </div>
+            </div>
+          </div>
+        `;
+
+        infoSection.innerHTML = infoBox;
+        infoSection.classList.add('active'); // Asegúrate de que la clase activa se agregue para mostrar la caja
+
+        infoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Cerrar el menú después de seleccionar una opción
         dropdownMenu.classList.remove('active');
-        dropdownButton.textContent = 'Buscar Paraderos';
+        dropdownButton.innerHTML = 'Buscar Micros <i class="fas fa-search"></i>';
       }
     }
   });
 });
-
-
 </script>

@@ -1,6 +1,6 @@
 .contact-section {
   padding: 60px 20px;
-  background: url('/assets/hero-bg.webp') no-repeat center center;
+  background: rgb(53, 53, 53);
   background-size: cover;
   color: #f8f9f9; /* Color de texto para mejor contraste */
   text-align: center;
@@ -23,7 +23,7 @@
 }
 
 h2, p {
-  font-size: 2rem; /* Ajuste del tamaño de la fuente */
+  font-size: 24px; /* Ajuste del tamaño de la fuente */
   margin-bottom: 20px;
   z-index: 2; /* Asegura que el texto esté por encima del fondo oscuro */
   position: relative;
@@ -33,7 +33,7 @@ h2, p {
     display: inline-flex; /* Usa inline-flex para que el icono y el texto se alineen horizontalmente */
     align-items: center; /* Centra verticalmente el icono con el texto */
     padding: 10px 20px;
-    background-color: #e63946;
+    background-color: #686868;
     color: #f8f9f9;
     text-decoration: none;
     border-radius: 5px;
@@ -50,5 +50,6 @@ h2, p {
   }
   
 .email-link:hover {
-  background-color: #d62839;
+  background-color: #686868;
 }
+

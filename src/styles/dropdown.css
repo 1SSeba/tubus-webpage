@@ -8,14 +8,14 @@
 
 /* Estilos para el botón del dropdown */
 .dropdown-button {
-  background-color: #e63946;
+  background-color: #686868;
   color: #ffffff;
   border: none;
   padding: 16px 60px; /* Aumentar el padding para hacer el botón más grande */
   font-size: 1.25rem; /* Aumentar el tamaño de la fuente */
   cursor: pointer;
   border-radius: 6px; /* Hacer los bordes más redondeados */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hacer la sombra un poco más grande */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Hacer la sombra un poco más grande */
   transition: background-color 0.3s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
 
 /* Estilo para el botón al pasar el ratón por encima */
 .dropdown-button:hover {
-  background-color: #d62828;
+  background-color: #686868;
 }
 
 /* Estilo para el botón al presionar */
@@ -38,15 +38,14 @@
   display: none;
   position: absolute;
   top: calc(100% + 10px); /* Ubicación justo debajo del botón con un margen */
-  left: 23.5%; /* Centra el menú con respecto al botón */
-  transform: translateX(-50%); /* Ajusta la posición horizontal */
+  left: 50%; /* Centra el menú con respecto al botón */
+  transform: translateX(-50%) scaleY(0); /* Ajusta la posición horizontal y escala el menú a 0 */
   background-color: #ffffff;
   border: 1px solid #ddd;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1001; /* Asegúrate de que el menú esté por encima de la caja de información */
+  z-index: 21; /* Asegúrate de que el menú esté por encima de la caja de información */
   opacity: 0;
-  transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -54,7 +53,7 @@
 .dropdown-menu.active {
   display: block;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) scaleY(1); /* Ajusta la posición horizontal y escala el menú a su tamaño original */
 }
 
 /* Estilos para la lista de resultados en el menú desplegable */
@@ -69,7 +68,7 @@
   border-bottom: 1px solid #ddd;
   cursor: pointer;
   color: #333;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -78,6 +77,7 @@
 /* Estilo para el ítem de resultado al pasar el ratón por encima */
 .result-item:hover {
   background-color: #f2f2f2;
+  transform: translateX(5px);
 }
 
 /* Estilos para las partes individuales del ítem de resultado */
@@ -108,38 +108,56 @@
   border: 1px solid #ddd;
   border-radius: 8px; /* Borde redondeado para estilo BentoGrid */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  position: relative; /* Asegura que el z-index funcione */
-  z-index: 1000; /* Debe ser menor que el dropdown-menu */
-  transform: translateZ(0);
-  animation: fadeIn 0.5s ease-out, float 3s infinite ease-in-out; /* Animaciones */
+  animation: infoBoxFadeIn 0.5s ease-out, infoBoxFloat 3s infinite ease-in-out; /* Animaciones */
+  align-items: center; /* Centra verticalmente */
 }
 
-/* Estilo para la imagen dentro de la caja de información */
+/* Estilo para la imagen en la caja de información */
 .info-image {
-  width: 100%;
-  height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
   overflow: hidden;
+  border-radius: 8px;
 }
 
 /* Ajusta la imagen para cubrir el contenedor sin deformarse */
 .info-image img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: cover;
+  animation: imageScale 0.5s ease-out;
 }
 
-/* Detalles de la información */
+/* Animación para la imagen dentro de la caja de información */
+@keyframes imageScale {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Estilos para los detalles en la caja de información */
 .info-details {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* Animación de aparición */
-@keyframes fadeIn {
+/* Estilos para cada ítem de información */
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+}
+
+/* Animación de aparición para la caja de información */
+@keyframes infoBoxFadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -150,24 +168,15 @@
   }
 }
 
-/* Animación de flotación */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
 /* Estilo de los iconos dentro de la caja de información */
 .info-details i {
-  color: #e63946; /* Color de iconos */
+  color: #686868; /* Color de iconos */
   margin-right: 8px;
 }
 
-.info-details .info-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+h2, p {
+  font-size: 24px; /* Ajuste del tamaño de la fuente */
+  margin-bottom: 20px;
+  z-index: 2; /* Asegura que el texto esté por encima del fondo oscuro */
+  position: relative;
 }

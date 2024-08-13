@@ -14,14 +14,6 @@ a:hover {
   text-decoration: underline;
 }
 
-footer {
-  padding: 20px;
-  text-align: center;
-  background-color: #343a40;
-  color: #f8f9f9;
-  position: relative;
-}
-
 /* Estilos para la caja de información */
 .info-box {
   padding: 15px;

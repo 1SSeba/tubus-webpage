@@ -1,0 +1,68 @@
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(53, 53, 53); /* Fondo semitransparente */
+    color: #f8f9f9;
+    position: relative;
+    z-index: 2; /* Asegúrate de que el footer esté por encima del fondo */
+    display: flex;
+    flex-direction: column; /* Apila el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Apila el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    width: 100%; /* Asegura que el contenido ocupa todo el ancho */
+}
+
+.footer-text {
+    margin-bottom: 20px; /* Espacio entre el texto y los botones */
+}
+
+.footer-buttons {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    position: absolute; /* Posiciona los botones absolutamente dentro del footer */
+    right: 20px; /* Ajusta la distancia desde el borde derecho */
+    bottom: 20px; /* Ajusta la distancia desde el borde inferior */
+    transform: translateY(10px); /* Mueve los botones hacia abajo para centrar con el texto */
+}
+
+.footer-buttons li {
+    color: #f8f9fa;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding-bottom: 5px; /* Espacio para la línea de selección */
+    transition: color 0.3s ease; /* Transición para el color del texto */
+}
+
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: #f8f9f9;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+.social-button:hover {
+    background-color: #555;
+}
+
+.social-button i {
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    box-shadow: none;
+}
