@@ -1,106 +1,51 @@
 [
-  {
+    {
     "number": "712",
     "licensePlate": "ABC123",
     "passengers": 24,
-    "street": "Av. Libertador Bernardo O'Higgins",
-    "route": "Desde Plaza de Maipú hasta La Moneda",
+    "street": "Av. Eyzaguirre /Esq. Luis Moreno Paz",
+    "route": "Desde Casas Viejas hasta La Piramide",
     "lastUpdate": "2024-08-12T10:00:00Z"
-  },
-  {
-    "number": "71",
+    },
+    {
+    "number": "F29",
     "licensePlate": "LMN456",
     "passengers": 18,
-    "street": "Av. Concha y Toro",
-    "route": "Desde Puente Alto hasta La Florida",
+    "street": "Luiz Moreo Paz / Esq. Eyzaguirre",
+    "route": "Desde Pie Andino Alto hasta Casas Viejas",
     "lastUpdate": "2024-08-12T12:00:00Z"
-  },
-  {
-    "number": "75",
+    },
+    {
+    "number": "712",
     "licensePlate": "DEF321",
     "passengers": 25,
-    "street": "Calle Los Lirios",
-    "route": "Desde Puente Alto hasta El Bosque",
+    "street": "Luiz Moreno Paz / Esq. Eyzaguirre ",
+    "route": "Desde La Piramide hasta Casas Viejas",
     "lastUpdate": "2024-08-12T12:30:00Z"
-  },
-  {
-    "number": "84",
+    },
+    {
+    "number": "F11",
     "licensePlate": "GHI654",
     "passengers": 20,
-    "street": "Av. Eyzaguirre",
-    "route": "Desde Puente Alto hasta La Cisterna",
+    "street": "Avenida Eyzaguirre /Esq. Luiz Moreno Paz",
+    "route": "Desde Pie Andino hasta Las Vizcachas",
     "lastUpdate": "2024-08-12T13:00:00Z"
-  },
-  {
-    "number": "103",
+    },
+    {
+    "number": "F01",
     "licensePlate": "JKL987",
     "passengers": 12,
-    "street": "Calle de la Primavera",
-    "route": "Desde Puente Alto hasta Santiago Centro",
+    "street": "Avenida Eyzaguirre / Esq. Luiz Moreno Paz",
+    "route": "Desde Villa Padre Hurtado hasta Casas Viejas",
     "lastUpdate": "2024-08-12T13:30:00Z"
-  },
-  {
-    "number": "01",
+    },
+    {
+    "number": "F01C",
     "licensePlate": "MNO345",
     "passengers": 15,
     "street": "Av. San Carlos",
-    "route": "Desde Puente Alto hasta El Peñalolén",
+    "route": "Desde Plaza Puente Alto hasta Casas Viejas",
     "lastUpdate": "2024-08-12T14:00:00Z"
-  },
-  {
-    "number": "F29",
-    "licensePlate": "PQR678",
-    "passengers": 19,
-    "street": "Av. Los Bosques",
-    "route": "Desde Puente Alto hasta La Florida",
-    "lastUpdate": "2024-08-12T14:30:00Z"
-  },
-  {
-    "number": "43",
-    "licensePlate": "STU901",
-    "passengers": 24,
-    "street": "Calle El Sol",
-    "route": "Desde Puente Alto hasta Cerro Navia",
-    "lastUpdate": "2024-08-12T15:00:00Z"
-  },
-  {
-    "number": "72",
-    "licensePlate": "VWX234",
-    "passengers": 17,
-    "street": "Av. El Parque",
-    "route": "Desde Puente Alto hasta La Reina",
-    "lastUpdate": "2024-08-12T15:30:00Z"
-  },
-  {
-    "number": "B7",
-    "licensePlate": "YZA567",
-    "passengers": 21,
-    "street": "Calle de la Vega",
-    "route": "Desde Puente Alto hasta Ñuñoa",
-    "lastUpdate": "2024-08-12T16:00:00Z"
-  },
-  {
-    "number": "C21",
-    "licensePlate": "BCD890",
-    "passengers": 23,
-    "street": "Av. Las Condes",
-    "route": "Desde Puente Alto hasta Las Condes",
-    "lastUpdate": "2024-08-12T16:30:00Z"
-  },
-  {
-    "number": "56",
-    "licensePlate": "EFG123",
-    "passengers": 15,
-    "street": "Calle del Valle",
-    "route": "Desde Puente Alto hasta Quilicura",
-    "lastUpdate": "2024-08-12T17:00:00Z"
-  },
-  {
-    "number": "09",
-    "licensePlate": "HIJ456",
-    "passengers": 20,
-    "street": "Av. de la Libertad",
-    "route": "Desde Puente Alto hasta Santiago Centro",
-    "lastUpdate": "2024-08-12T17:30:00Z"
-  }
+    }
 ]
+
